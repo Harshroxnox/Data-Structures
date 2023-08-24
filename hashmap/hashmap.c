@@ -63,6 +63,19 @@ person* search(char * name){
     }
 }
 
+person* delete(char * name){
+    int index = hash(name);
+    if(hash_table[index] == NULL){
+        return NULL;
+    }else if(strcmp(hash_table[index]->name, name) == 0){
+        person* temp = hash_table[index];
+        hash_table[index] = NULL;
+        return temp;
+    }else{
+        return NULL;
+    }
+}
+
 
 int main(){
 
@@ -82,10 +95,10 @@ int main(){
 
     person jacob = {"Jacob", 28};
     person bill = {"Bill", 18};
-    person jane = {"Ron", 30};
+    person ron = {"Ron", 30};
     insert(&jacob);
     insert(&bill);
-    insert(&jane);
+    insert(&ron);
     display_hash_table();
 
     if(search("Jacob") == NULL){
@@ -99,6 +112,20 @@ int main(){
     }else{
         printf("Jane found\n");
     }
+
+    if(delete("Jane") == NULL){
+        printf("Jane not found\n");
+    }else{
+        printf("Jane deleted\n");
+    }
+
+    if(delete("Jacob") == NULL){
+        printf("Jacob not found\n");
+    }else{
+        printf("Jacob deleted\n");
+    }
+
+    display_hash_table();
 
     return 0;
 
