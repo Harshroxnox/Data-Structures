@@ -1,3 +1,4 @@
+//Implementation of a hash table without collision handling
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -5,8 +6,8 @@
 typedef struct {
     char name[256];
     int age;
-
-} person;
+    
+}person;
 
 person * hash_table[10];
 
@@ -92,7 +93,7 @@ int main(){
     init_hash_table();
     display_hash_table();
 
-
+    //insert Jacob, Bill, Ron
     person jacob = {"Jacob", 28};
     person bill = {"Bill", 18};
     person ron = {"Ron", 30};
@@ -101,24 +102,28 @@ int main(){
     insert(&ron);
     display_hash_table();
 
+    //search Jacob
     if(search("Jacob") == NULL){
         printf("Jacob not found\n");
     }else{
         printf("Jacob found\n");
     }
 
+    //search Jane
     if(search("Jane") == NULL){
         printf("Jane not found\n");
     }else{
         printf("Jane found\n");
     }
 
+    //delete Jane
     if(delete("Jane") == NULL){
         printf("Jane not found\n");
     }else{
         printf("Jane deleted\n");
     }
 
+    //delete Jacob
     if(delete("Jacob") == NULL){
         printf("Jacob not found\n");
     }else{
