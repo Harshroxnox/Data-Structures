@@ -1,3 +1,4 @@
+// Implementation of Hashmap with collision handling using external chaining with linked lists
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -107,7 +108,7 @@ person *search(char *name)
     }
 }
 
-// some problem is there in this delete function that I have to fix
+
 person *delete(char *name)
 {
     int index = hash(name);
@@ -128,11 +129,13 @@ person *delete(char *name)
             return NULL;
         }
         // Found and deleting
-        if (ptr = hash_table[index])
+        // Node is in the beginning
+        if (ptr == hash_table[index])
         {
             hash_table[index] = ptr->next;
             return ptr;
         }
+        // Node is in the end
         else if (ptr->next == NULL)
         {
             person *temp = ptr;
@@ -144,6 +147,7 @@ person *delete(char *name)
             ptr->next = NULL;
             return temp;
         }
+        // Node is in the middle
         else
         {
             person *temp = hash_table[index];
@@ -173,7 +177,7 @@ int main()
     init_hash_table();
     display_hash_table();
 
-    // insert Jacob, Bill, Ron
+    // insert Jacob, Bill, Ron, Natalie, Sara, Mpho, Tebogo, Jane, Maren
     person jacob = {"Jacob", 28, NULL};
     person bill = {"Bill", 18, NULL};
     person ron = {"Ron", 30, NULL};
