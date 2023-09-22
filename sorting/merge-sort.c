@@ -48,10 +48,10 @@ void mergeSort(int * arr, int s, int e){
 }
 
 int main(){
-    int arr[9] = {2,5,3,4,1,8,9,6,12};
-    mergeSort(arr, 0, 8);
+    int arr[4] = {1,2,3,1};
+    mergeSort(arr, 0, 3);
 
-    for(int i=0; i<9; i++){
+    for(int i=0; i<4; i++){
         printf("%d\n", arr[i]);
     }
 
