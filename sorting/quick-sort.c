@@ -5,24 +5,38 @@
 
 #include <stdio.h>
 
+int partition(int * arr, int l, int h){
+    int pivot = arr[l];
+    int start = l;
+    int end = h;
+
+    while(start<end){
+        while(arr[start]<= pivot){
+            start++;
+        }
+
+        while(arr[end]>pivot){
+            end--;
+        }
+
+        if(start<end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+        }
+    }
+    int temp = arr[l];
+    arr[l] = arr[end];
+    arr[end] = temp;
+    return end;
+}
+
 void quickSort(int * arr, int l, int h){
     if(l>=h){
         return;
     }
-    int pivot = l;
+    int pivot = partition(arr, l, h);
 
-    for(int i=l+1; i<=h; i++){
-        if(arr[i] <= arr[pivot]){
-            int j=i;
-            while(j>=pivot+1){
-                int temp = arr[j];
-                arr[j] = arr[j-1];
-                arr[j-1] = temp;
-                j--;
-            }
-            pivot++;
-        }
-    }
     quickSort(arr, l, pivot-1);
     quickSort(arr, pivot+1, h);
 
